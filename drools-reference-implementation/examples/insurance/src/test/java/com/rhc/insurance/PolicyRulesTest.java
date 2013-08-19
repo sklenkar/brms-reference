@@ -2,6 +2,8 @@ package com.rhc.insurance;
 
 import static org.junit.Assert.assertEquals;
 
+
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +17,8 @@ import org.junit.Test;
 
 import com.rhc.drools.reference.ClasspathKnowledgeBaseBuilder;
 import com.rhc.drools.reference.KnowledgeBaseBuilder;
+import org.drools.logger.KnowledgeRuntimeLogger;
+import org.drools.logger.KnowledgeRuntimeLoggerFactory;
 
 /**
  * This is a sample class to launch a rule.
@@ -27,7 +31,9 @@ public class PolicyRulesTest {
 	static KnowledgeBase kbase;
 
 	static StatefulKnowledgeSession ksession;
-	static KnowledgeRuntimeLogger logger;
+	//static KnowledgeRuntimeLogger logger;
+	
+	static KnowledgeRuntimeLogger droolsAuditLogger = null;
 
 	@BeforeClass
 	public static void setupComponent() {
@@ -42,6 +48,12 @@ public class PolicyRulesTest {
 		kbase = kbuilder.getKnowledgeBase();
 		
 		ksession = kbase.newStatefulKnowledgeSession();
+		
+		String logFileName = "/home/sklenkar/apps/brms-reference/drools-reference-implementation/examples/insurance/src/test/resources/log/log.txt";
+		droolsAuditLogger = KnowledgeRuntimeLoggerFactory.newFileLogger( ksession, logFileName);
+		//addFiredRulesEventListener( ksession );
+		
+		droolsAuditLogger.close();
 
 	}
 
