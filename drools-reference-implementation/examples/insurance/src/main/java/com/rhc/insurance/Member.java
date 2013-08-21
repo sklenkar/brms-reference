@@ -1,11 +1,15 @@
 package com.rhc.insurance;
 
+
+
 public class Member
 {
 	public String name;
 	public Boolean smokesRegularly;
 	public Boolean skydivesRegularly;
 	public Boolean filesMedicationRegularly;
+
+	public int test;
 	
 	public Member()
 	{
