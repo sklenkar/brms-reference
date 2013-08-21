@@ -9,7 +9,7 @@ public class Member
 	public Boolean skydivesRegularly;
 	public Boolean filesMedicationRegularly;
 
-	public int test;
+	private int test;
 	
 	public Member()
 	{
