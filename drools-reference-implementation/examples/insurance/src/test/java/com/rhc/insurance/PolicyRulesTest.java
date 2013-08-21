@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.drools.KnowledgeBase;
+import org.drools.event.DebugWorkingMemoryEventListener;
 import org.drools.logger.KnowledgeRuntimeLogger;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.rule.FactHandle;
@@ -49,11 +50,18 @@ public class PolicyRulesTest {
 		
 		ksession = kbase.newStatefulKnowledgeSession();
 		
+		//ksession.addEventListener( new DebugAgendaEventListener() );
+
+		//ksession.addEventListener( new DebugWorkingMemoryEventListener() );
+
+		
 		String logFileName = "/home/sklenkar/apps/brms-reference/drools-reference-implementation/examples/insurance/src/test/resources/log/log.txt";
 		droolsAuditLogger = KnowledgeRuntimeLoggerFactory.newFileLogger( ksession, logFileName);
+		
+		
 		//addFiredRulesEventListener( ksession );
 		
-		droolsAuditLogger.close();
+		//droolsAuditLogger.close();
 
 	}
 
