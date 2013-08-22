@@ -10,7 +10,7 @@
 	
 	<!--  I added this -->
 	<packaging>war</packaging>
-	<name>insurance</name>
+	<name>brms-demo</name>
 	<repositories>
 	<repository>
 			<id>eap</id>
