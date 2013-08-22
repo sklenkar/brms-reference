@@ -36,8 +36,8 @@ import org.slf4j.LoggerFactory;
 public class ClasspathKnowledgeBaseBuilder implements KnowledgeBaseBuilder {
 
 	private static Logger logger = LoggerFactory.getLogger( ClasspathKnowledgeBaseBuilder.class );
-	private KnowledgeBase kBase;
 	private Set<String> knowledgeResources;
+	private KnowledgeBase kBase;
 
 	public ClasspathKnowledgeBaseBuilder( Set<String> knowledgeResources ) {
 		this.knowledgeResources = knowledgeResources;
@@ -48,18 +48,14 @@ public class ClasspathKnowledgeBaseBuilder implements KnowledgeBaseBuilder {
 
 	@Override
 	public KnowledgeBase getKnowledgeBase() {
-
-		if ( this.kBase == null ) {
-			this.kBase = buildKnowledgeBase();
+		if ( kBase == null ) {
+			buildKnowledgeBase();
 		}
-		return this.kBase;
+		return kBase;
 	}
 
-	public void setKnowledgeBase( KnowledgeBase kBase ) {
-		this.kBase = kBase;
-	}
-
-	private KnowledgeBase buildKnowledgeBase() {
+	@Override
+	public void buildKnowledgeBase() {
 
 		KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
@@ -85,11 +81,10 @@ public class ClasspathKnowledgeBaseBuilder implements KnowledgeBaseBuilder {
 			logger.error( kbuilder.getErrors().toString() );
 		}
 
-		this.kBase = kbuilder.newKnowledgeBase();
+		kBase = kbuilder.newKnowledgeBase();
 
 		logger.debug( "Building Knowledge Base took " + ( System.currentTimeMillis() - startTime ) + " ms" );
 
-		return kBase;
 	}
 
 	public void setKnowledgeResources( Set<String> knowledgeResources ) {

@@ -24,6 +24,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.rhc.drools.reference.ClasspathKnowledgeBaseBuilder;
+import com.rhc.drools.reference.ComponentManager;
 
 @ContextConfiguration
 public class SpringContextTest extends AbstractJUnit4SpringContextTests {
@@ -49,8 +50,8 @@ public class SpringContextTest extends AbstractJUnit4SpringContextTests {
 		Assert.assertEquals( 1, bar.getKnowledgeBase().getKnowledgePackages().size() );
 
 		// make foo null directly, and bar null indirectly - its the same reference
-		foo.setKnowledgeBase( null );
 		foo.setKnowledgeResources( null );
+		ComponentManager.rebuildAllKnowledgeBases();
 
 		// show both are empty kbases
 		Assert.assertEquals( 0, foo.getKnowledgeBase().getKnowledgePackages().size() );

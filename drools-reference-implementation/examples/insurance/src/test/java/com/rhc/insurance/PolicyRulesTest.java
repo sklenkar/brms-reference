@@ -47,7 +47,7 @@ public class PolicyRulesTest {
 
 		kbuilder = new ClasspathKnowledgeBaseBuilder( resources );
 		kbase = kbuilder.getKnowledgeBase();
-		
+
 		ksession = kbase.newStatefulKnowledgeSession();
 		
 		//ksession.addEventListener( new DebugAgendaEventListener() );
@@ -164,7 +164,6 @@ public class PolicyRulesTest {
 			member.setFilesMedicationRegularly( true );
 
 			Policy policy = new Policy();
-			
 
 			// insert objects into working memory
 			FactHandle driverFH = (FactHandle) ksession.insert( member );
